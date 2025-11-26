@@ -1,12 +1,12 @@
 import { Product } from "../models/product.model.ts";
 
 export class ProductService {
-  async createProduct(userId: string, name: string, price: number) {
-    return Product.create({ name, price, userId });
+  async createProduct(userId: string, name: string, price: number, stock: number, description: string) {
+    return Product.create({ name, price, userId, stock, description });
   }
 
   async getProducts(userId: string) {
-    return Product.find({ userId });
+    return Product.find({ userId });  
   }
 
   async updateProduct(userId: string, productId: string, data: any) {
