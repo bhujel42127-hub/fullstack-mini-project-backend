@@ -73,6 +73,10 @@ export class AuthService {
       token,
     };
   }
+  async verifyEmail(email: string) {
+    const exists = await User.findOne({ email });
+    return !!exists;
+  }
 }
 
 export const authService = new AuthService();

@@ -1,6 +1,9 @@
 import { User } from "../models/user.model";
 
 export class ProfileService {
+  async getAllProfile() {
+    return User.find();
+  }
   async getProfile(userId: string) {
     return User.findById(userId);
   }

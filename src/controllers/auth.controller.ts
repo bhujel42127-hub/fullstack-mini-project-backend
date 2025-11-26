@@ -40,6 +40,17 @@ export async function login(req: Request, res: Response) {
   }
 }
 
+export async function verifyEmail(req: Request, res: Response) {
+  try {
+    const { email } = req.body;
+    const exists = await authService.verifyEmail(email);
+    res.json({ exists });
+  } catch (err: any) {
+    res.status(400).json({ message: err.message });
+  }
+}
+
+
 export async function logout(req: Request, res: Response) {
   res.clearCookie("token");
   res.json({ message: "logged out successfully!" });
