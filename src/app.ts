@@ -3,7 +3,7 @@ import cors from "cors";
 import authRoutes from "./routes/auth.routes";
 import productRoutes from "./routes/product.routes";
 import cookieParser from "cookie-parser";
-import profileRoute from "./routes/product.routes";
+import profileRoute from "./routes/profile.route";
 
 const app = express();
 
@@ -18,6 +18,6 @@ app.use(cookieParser());
 
 app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
-app.use("/profile", profileRoute);
+app.use("/users", profileRoute);
 
 export default app;
