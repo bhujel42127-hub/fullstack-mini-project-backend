@@ -6,15 +6,22 @@ export async function createProduct(req: Request, res: Response) {
     const userId = (req as any).userId;
     const { name, price, stock, description } = req.body;
 
-    const product = await productService.createProduct(userId, name, price, stock, description,);
+    const product = await productService.createProduct(
+      userId,
+      name,
+      price,
+      stock,
+      description
+    );
     res.json({ message: "Product created", product });
   } catch {
     res.status(400).json({ message: "Error creating product" });
   }
 }
 
-export async function getProducts(req: Request, res: Response) {
+export async function getProducts(req: Request, res: Response) {  
   const userId = (req as any).userId;
+  // console.log("user id: ", userId);
   const products = await productService.getProducts(userId);
   res.json({ products });
 }
@@ -23,7 +30,11 @@ export async function updateProduct(req: Request, res: Response) {
   const userId = (req as any).userId;
   const { id } = req.params;
 
-  const updated = await productService.updateProduct(userId, id as string, req.body);
+  const updated = await productService.updateProduct(
+    userId,
+    id as string,
+    req.body
+  );
   res.json({ message: "Updated", updated });
 }
 

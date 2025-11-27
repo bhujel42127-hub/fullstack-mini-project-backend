@@ -9,11 +9,11 @@ interface JwtPayload {
 
 export function requireUser(req: Request, res: Response, next: NextFunction) {
   const JWT_SECRET = process.env.JWT_SECRET as string;
-  const token = req.cookies.token;
+  const token = req.cookies.accessToken;
 
-  // console.log("JWT:", JWT_SECRET);
+  console.log("JWT:", JWT_SECRET);
 
-  // console.log("Token: ", token);
+  console.log("Token: ", token  );
 
   if (!token) {
     return res.status(401).json({ message: "Authentication required" });

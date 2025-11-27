@@ -5,8 +5,9 @@ export type UserRole = "SUPER_ADMIN" | "ADMIN" | "USER";
 const userSchema = new mongoose.Schema(
   {
     name: String,
-    email: { type: String, unique: true },
+    email: { type: String, unique: true, required: true },
     password: String,
+    bio: String,
     role: {
       type: String,
       enum: ["SUPER_ADMIN", "ADMIN", "USER"],
@@ -14,7 +15,7 @@ const userSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, 
+    timestamps: true,
   }
 );
 
