@@ -115,7 +115,7 @@ export class AuthService {
     console.log("User email:", email);
 
     const user = await User.findOne({ email });
-
+    
     if (!user) return console.log("User not found");
     console.log("User id:", user._id.toString());
     // console.log("JWT", process.env.JWT_SECRET as string);
