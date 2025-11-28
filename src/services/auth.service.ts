@@ -115,9 +115,9 @@ export class AuthService {
     console.log("User email:", email);
 
     const user = await User.findOne({ email });
-    
+
     if (!user) return console.log("User not found");
-    console.log("User id:", user._id.toString());
+    // console.log("User id:", user._id.toString());
     // console.log("JWT", process.env.JWT_SECRET as string);
 
     const resetToken = jwt.sign(
@@ -128,27 +128,27 @@ export class AuthService {
       process.env.JWT_SECRET as string,
       { expiresIn: "10m" }
     );
-    console.log("reset token:", resetToken);
+    // console.log("reset token:", resetToken);
 
     return resetToken;
   }
   async resetPassword(token: string, newPassword: string) {
-    console.log("in reset password auth service");
+    // console.log("in reset password auth service");
     const JWT_SECRET = process.env.JWT_SECRET as string;
-    console.log("token:", token);
+    // console.log("token:", token);
     let decoded;
     try {
-      console.log("in reset password auth service try block");
+      // console.log("in reset password auth service try block");
 
       decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
-      console.log("in reset password auth service try block after decoded");
+      // console.log("in reset password auth service try block after decoded");
 
-      console.log("Decoded token:", decoded);
+      // console.log("Decoded token:", decoded);
 
       const userId = decoded.userId;
 
       const user = await User.findById(userId);
-      console.log("user found:", user);
+      // console.log("user found:", user);
 
       if (!user) return;
 
@@ -162,4 +162,4 @@ export class AuthService {
   }
 }
 
-export const  authService = new AuthService();
+export const authService = new AuthService();

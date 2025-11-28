@@ -50,6 +50,9 @@ export async function login(req: Request, res: Response) {
     res.status(400).json({ message: err.message });
   }
 }
+
+
+
 export async function refresh(req: Request, res: Response) {
   try {
     const refreshToken = req.cookies.refreshToken;
@@ -76,11 +79,11 @@ export async function refresh(req: Request, res: Response) {
 
 export async function verifyEmail(req: Request, res: Response) {
   try {
-    console.log("request body:", req.body);
+    // console.log("request body:", req.body);
     const { email } = req.body;
-    console.log("Entered email:", email);
+    // console.log("Entered email:", email);
     const resetToken = await authService.verifyEmail(email);
-    console.log("Reset token", resetToken);
+    // console.log("Reset token", resetToken);
     
     console.log(`http://localhost:5173/reset-password?token=${resetToken}`);
   } catch (err: any) {
@@ -88,13 +91,13 @@ export async function verifyEmail(req: Request, res: Response) {
   }
 }
 export async function resetPassword(req: Request, res: Response) {
-  console.log("in reset pass auth controller");
+  // console.log("in reset pass auth controller");
 
   try {
-    console.log("in reset pass auth controller");
+    // console.log("in reset pass auth controller");
     const { token, newPassword } = req.body;
     await authService.resetPassword(token, newPassword);
-    console.log("After resetting");
+    // console.log("After resetting");
     res.json({ message: "Password reset successful" });
   } catch (err: any) {
     res.status(400).json({ message: err.message });
